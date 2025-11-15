@@ -1,16 +1,17 @@
-import { useState } from 'react'
-import './App.css'
+import LoginPage from "./pages/login";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <h1>Iniciando Projeto</h1>
-      </div>
+      {/* <Typography variant="h4" component="h1" gutterBottom>
+        Bem-vindo ao MUI!
+      </Typography>
+      <Button variant="contained" color="primary">
+        Botão Estilizado
+      </Button> */}
+      <LoginPage />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
