@@ -1,16 +1,12 @@
-import { ThemeProvider } from "@emotion/react";
-import Navbar from "./components/Navbar";
-import customTheme from "./theme/CustomTheme";
+import BannerHero from "./components/BannerHero";
+import LayoutApp from "./layouts/LayoutApp";
 
 function App() {
   return (
     <>
-      {/* <LoginPage /> */}
-      {/* <RegisterPage /> */}
-      <ThemeProvider theme={customTheme}>
-        <Navbar />
-        {/* O resto do seu aplicativo */}
-      </ThemeProvider>
+      <LayoutApp>
+        <BannerHero />
+      </LayoutApp>
     </>
   );
 }
