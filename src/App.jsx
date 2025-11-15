@@ -1,15 +1,10 @@
-import LoginPage from "./pages/login";
+import RegisterPage from "./pages/Register";
 
 function App() {
   return (
     <>
-      {/* <Typography variant="h4" component="h1" gutterBottom>
-        Bem-vindo ao MUI!
-      </Typography>
-      <Button variant="contained" color="primary">
-        Botão Estilizado
-      </Button> */}
-      <LoginPage />
+      {/* <LoginPage /> */}
+      <RegisterPage />
     </>
   );
 }

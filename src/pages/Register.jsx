@@ -3,8 +3,9 @@ import { useState } from "react";
 import WaveBackground from "../components/WaveBackground";
 import Logo from "/logoSpan.png";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const [email, setEmail] = useState("");
+  const [nome, setNome] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -21,21 +22,24 @@ const LoginPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({
+          nome,
+          email,
+          password,
+        }),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(
-          errorData.message || "Falha no login. Verifique suas credenciais."
+          errorData.message || "Falha no registro. Verifique os dados enviados."
         );
       }
 
       const data = await response.json();
-
-      console.log("Login bem-sucedido:", data);
+      console.log("Registro bem-sucedido:", data);
     } catch (err) {
-      console.error("Erro durante o login:", err);
+      console.error("Erro durante o registro:", err);
       setError(err.message);
     } finally {
       setIsLoading(false);
@@ -63,7 +67,7 @@ const LoginPage = () => {
             width: "100%",
             border: "1px solid #ccc",
             backgroundColor: "white",
-            padding: 4,
+            padding: 2,
             borderRadius: 2,
             boxShadow: 3,
           }}
@@ -78,18 +82,18 @@ const LoginPage = () => {
               fontWeight: 600,
             }}
           >
-            Oi, Bem vindo de volta!
+            Seja Bem-vindo !
           </Typography>
           <Typography
             component="span"
             variant="span"
             sx={{
-              mb: 3,
+              mb: 1,
               color: "gray",
               fontWeight: 400,
             }}
           >
-            Faça login para acessar sua conta!
+            Rgistre-se para acessar o sistema !
           </Typography>
 
           <Box
@@ -98,6 +102,18 @@ const LoginPage = () => {
             noValidate
             sx={{ mt: 1 }}
           >
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="text"
+              label="Nome Completo"
+              name="Nome Completo"
+              autoComplete="Nome Completo"
+              autoFocus
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+            />
             <TextField
               margin="normal"
               required
@@ -139,4 +155,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
