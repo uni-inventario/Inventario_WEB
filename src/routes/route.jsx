@@ -1,38 +1,41 @@
 import { createBrowserRouter } from "react-router-dom";
 import BannerHero from "../components/BannerHero";
+import Navbar from "../components/Navbar";
 import LayoutApp from "../layouts/LayoutApp";
-import LoginPage from "../pages/Login";
 import RegisterPage from "../pages/Register";
+import PrivateLogin from "./privateLogin";
 import PrivateRoute from "./privateRoute";
 
 const route = createBrowserRouter([
   {
     path: "/",
-    element:
+    element: (
       <LayoutApp>
         <BannerHero />
-      </LayoutApp>,
+      </LayoutApp>
+    ),
   },
   {
     path: "/login",
-    element: <LoginPage />
+    element: <PrivateLogin />,
   },
   {
     path: "/register",
-    element: <RegisterPage />
+    element: <RegisterPage />,
   },
   {
     path: "/dashboard",
-    children:[
+    children: [
       {
         path: "",
-        element:
+        element: (
           <PrivateRoute>
-            <div>Painel de Controle</div>
+            <Navbar />
           </PrivateRoute>
-      }
-    ]
-  }
+        ),
+      },
+    ],
+  },
 ]);
 
 export default route;
