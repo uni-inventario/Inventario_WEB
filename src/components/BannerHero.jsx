@@ -1,5 +1,6 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 // Container com gradiente
 const HeroContainer = styled(Box)(({ theme }) => ({
@@ -54,6 +55,8 @@ const AnimatedButton = styled(Button)(({ theme }) => ({
 }));
 
 export default function BannerHero() {
+  const navigate = useNavigate();
+  
   return (
     <HeroContainer>
       <Container maxWidth="lg">
@@ -74,6 +77,7 @@ export default function BannerHero() {
               variant="contained"
               color="secondaryTeste"
               size="large"
+              onClick={() => navigate("/register")}
               sx={{ paddingX: 4, paddingY: 1.5, borderRadius: "10px" }}
             >
               Cadastre-se Gratuitamente

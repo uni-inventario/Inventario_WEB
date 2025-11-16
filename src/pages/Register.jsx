@@ -2,45 +2,46 @@ import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import WaveBackground from "../components/WaveBackground";
 import Logo from "/logoSpan.png";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import LinearIndeterminate from "../components/LoadingTop";
+import { registerUser } from "../services/usuarioService";
 
 const RegisterPage = () => {
-  const [email, setEmail] = useState("");
-  const [nome, setNome] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    nome: "",
+    email: "",
+    senha: "",
+  });
+
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     setIsLoading(true);
-    setError(null);
+
+    if (!formData.nome || !formData.email || !formData.senha) {
+      toast.error("Preencha todos os campos!");
+      setIsLoading(false);
+      return;
+    }
 
     try {
-      const response = await fetch("", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nome,
-          email,
-          password,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(
-          errorData.message || "Falha no registro. Verifique os dados enviados."
-        );
-      }
-
-      const data = await response.json();
-      console.log("Registro bem-sucedido:", data);
+      await registerUser(formData);
+      toast.success("Registro realizado com sucesso!");
+      navigate("/login")
     } catch (err) {
-      console.error("Erro durante o registro:", err);
-      setError(err.message);
+      err?.response?.data?.message &&
+        err?.response?.data?.message?.forEach(msg => toast.error(msg))
     } finally {
       setIsLoading(false);
     }
@@ -49,6 +50,8 @@ const RegisterPage = () => {
   return (
     <Box sx={{ position: "relative", minHeight: "100vh" }}>
       <WaveBackground />
+      <LinearIndeterminate status={isLoading} />
+
       <Container
         component="main"
         maxWidth="xs"
@@ -67,88 +70,73 @@ const RegisterPage = () => {
             width: "100%",
             border: "1px solid #ccc",
             backgroundColor: "white",
-            padding: 2,
+            padding: 4,
             borderRadius: 2,
             boxShadow: 3,
           }}
         >
           <img src={Logo} alt="Logo" style={{ width: 140, height: 140 }} />
-          <Typography
-            component="h1"
-            variant="h5"
-            sx={{
-              mb: 1,
-              color: "text.primary",
-              fontWeight: 600,
-            }}
-          >
-            Seja Bem-vindo !
-          </Typography>
-          <Typography
-            component="span"
-            variant="span"
-            sx={{
-              mb: 1,
-              color: "gray",
-              fontWeight: 400,
-            }}
-          >
-            Rgistre-se para acessar o sistema !
+
+          <Typography variant="h5" sx={{ mb: 1, fontWeight: 600 }}>
+            Seja bem-vindo!
           </Typography>
 
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <Typography variant="body2" sx={{ mb: 3, color: "gray" }}>
+            Registre-se para acessar o sistema.
+          </Typography>
+
+          <form onSubmit={handleSubmit} style={{ width: "100%" }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="text"
               label="Nome Completo"
-              name="Nome Completo"
-              autoComplete="Nome Completo"
-              autoFocus
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
+              name="nome"
+              value={formData.nome}
+              onChange={handleChange}
             />
+
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
+              type="email"
               label="Endereço de Email"
               name="email"
-              autoComplete="email"
-              autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
             />
 
             <TextField
               margin="normal"
               required
               fullWidth
-              name="password"
               label="Senha"
               type="password"
-              id="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="senha"
+              value={formData.senha}
+              onChange={handleChange}
             />
 
             <Button
               type="submit"
               fullWidth
               variant="contained"
+              disabled={isLoading}
               sx={{ mt: 3, mb: 2 }}
             >
-              Entrar
+              {isLoading ? "Registrando..." : "Registrar"}
             </Button>
-          </Box>
+
+            <Button
+              fullWidth
+              variant="contained"
+              onClick={() => navigate(-1)}
+              sx={{ mb: 2, backgroundColor: "gray" }}
+            >
+              Voltar
+            </Button>
+          </form>
         </Box>
       </Container>
     </Box>

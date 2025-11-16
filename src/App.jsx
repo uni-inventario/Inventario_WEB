@@ -1,14 +1,9 @@
-import BannerHero from "./components/BannerHero";
+import { RouterProvider } from "react-router-dom";
 import LayoutApp from "./layouts/LayoutApp";
+import route from "./routes/route.jsx";
 
 function App() {
-  return (
-    <>
-      <LayoutApp>
-        <BannerHero />
-      </LayoutApp>
-    </>
-  );
+  return (<RouterProvider router={route} />);
 }
 
 export default App;
