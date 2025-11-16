@@ -8,9 +8,10 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("access_token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    const token = JSON.parse(localStorage.getItem("access_token"));
+    console.log(token);
+    if (token?.token) {
+      config.headers.Authorization = `Bearer ${token?.token}`;
     }
     return config;
   },
@@ -22,7 +23,7 @@ api.interceptors.response.use(
     if (response?.data && response.data.success === false) {
       return Promise.reject({
         isHandledSuccessFalse: true,
-        response: response
+        response: response,
       });
     }
 
