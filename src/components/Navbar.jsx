@@ -20,8 +20,8 @@ import Logo from "/logo2.png";
 
 const navLinks = [
   { title: "Home", path: "#home" },
-  { title: "Registrar-se", path: "#register" },
-  { title: "Entrar", path: "#login" },
+  { title: "Registrar-se", path: "/register" },
+  { title: "Entrar", path: "/login" },
 ];
 
 function Navbar() {

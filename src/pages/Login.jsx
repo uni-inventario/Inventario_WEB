@@ -2,41 +2,41 @@ import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import WaveBackground from "../components/WaveBackground";
 import Logo from "/logoSpan.png";
+import { useNavigate } from "react-router-dom";
+import { login } from "../services/authService";
+import toast from "react-hot-toast";
+import LinearIndeterminate from "../components/LoadingTop";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     setIsLoading(true);
     setError(null);
 
     try {
-      const response = await fetch("", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await login(formData.email, formData.password);
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(
-          errorData.message || "Falha no login. Verifique suas credenciais."
-        );
-      }
-
-      const data = await response.json();
-
-      console.log("Login bem-sucedido:", data);
+      toast.success("Login realizado com sucesso!");
+      localStorage.setItem("access_token", JSON.stringify(response.data));
+      navigate("/dashboard");
     } catch (err) {
-      console.error("Erro durante o login:", err);
-      setError(err.message);
+      toast.error(err?.response?.data);
     } finally {
       setIsLoading(false);
     }
@@ -45,6 +45,7 @@ const LoginPage = () => {
   return (
     <Box sx={{ position: "relative", minHeight: "100vh" }}>
       <WaveBackground />
+      <LinearIndeterminate status={isLoading}/>
       <Container
         component="main"
         maxWidth="xs"
@@ -69,46 +70,34 @@ const LoginPage = () => {
           }}
         >
           <img src={Logo} alt="Logo" style={{ width: 140, height: 140 }} />
+
           <Typography
-            component="h1"
             variant="h5"
-            sx={{
-              mb: 1,
-              color: "text.primary",
-              fontWeight: 600,
-            }}
+            sx={{ mb: 1, color: "text.primary", fontWeight: 600 }}
           >
-            Oi, Bem vindo de volta!
+            Oi, bem-vindo de volta!
           </Typography>
-          <Typography
-            component="span"
-            variant="span"
-            sx={{
-              mb: 3,
-              color: "gray",
-              fontWeight: 400,
-            }}
-          >
+
+          <Typography variant="body2" sx={{ mb: 3, color: "gray" }}>
             Faça login para acessar sua conta!
           </Typography>
 
-          <Box
-            component="form"
+          <form
             onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
+            style={{ width: "100%", marginTop: "8px" }}
           >
             <TextField
               margin="normal"
               required
               fullWidth
+              type="email"
               id="email"
               label="Endereço de Email"
               name="email"
               autoComplete="email"
               autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
             />
 
             <TextField
@@ -120,19 +109,30 @@ const LoginPage = () => {
               type="password"
               id="password"
               autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
             />
 
             <Button
               type="submit"
               fullWidth
               variant="contained"
+              disabled={isLoading}
               sx={{ mt: 3, mb: 2 }}
             >
-              Entrar
+              {isLoading ? "Entrando..." : "Entrar"}
             </Button>
-          </Box>
+
+            <Button
+              type="button"
+              onClick={() => navigate(-1)}
+              fullWidth
+              variant="contained"
+              sx={{ mb: 2, backgroundColor: "gray" }}
+            >
+              Voltar
+            </Button>
+          </form>
         </Box>
       </Container>
     </Box>
