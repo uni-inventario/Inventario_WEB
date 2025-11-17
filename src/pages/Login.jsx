@@ -34,7 +34,7 @@ const LoginPage = () => {
 
       toast.success("Login realizado com sucesso!");
       localStorage.setItem("access_token", JSON.stringify(response.data));
-      navigate("/dashboard");
+      navigate("s");
     } catch (err) {
       toast.error(err?.response?.data);
     } finally {
