@@ -9,7 +9,7 @@ import Logo from "/logo2.png";
 const FooterContainer = styled(Box)(({ theme }) => ({
   background: "linear-gradient(135deg, #0A1F44 0%, #195597 60%, #1E88E5 100%)",
   color: "#ffffff",
-  padding: theme.spacing(2, 2),
+  padding: '50px 20px 30px 20px'
 }));
 
 const FooterTitle = styled(Typography)(({ theme }) => ({
@@ -28,8 +28,6 @@ export default function Footer() {
           display={"flex"}
           justifyContent="space-between"
         >
-          {/* LOGO + DESCRIÇÃO */}
-          {/* Garante 12 colunas em telas xs e 4 colunas em sm e md+ */}
           <Grid item xs={12} sm={4} md={4}>
             <Box display="flex" alignItems="center" mb={2}>
               <img

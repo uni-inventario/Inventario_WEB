@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // Container com gradiente
 const HeroContainer = styled(Box)(({ theme }) => ({
   width: "100%",
-  minHeight: "85vh",
+  minHeight: "100dvh",
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(6, 2),

@@ -7,11 +7,9 @@ import customTheme from "./theme/CustomTheme.jsx";
 import { Toaster } from "react-hot-toast";
 
 createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ThemeProvider theme={customTheme}>
-      <Toaster position="top-center" reverseOrder={false} />
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>
+  <ThemeProvider theme={customTheme}>
+    <Toaster position="top-center" reverseOrder={false} />
+    <CssBaseline />
+    <App />
+  </ThemeProvider>
 );

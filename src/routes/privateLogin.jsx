@@ -14,7 +14,7 @@ const PrivateLogin = () => {
     tokenData.expiresAt &&
     new Date(tokenData.expiresAt).getTime() >= Date.now();
 
-  return isAuthenticated ? <Navigate to="/dashboard" replace /> : <LoginPage />;
+  return isAuthenticated ? <Navigate to="/estoques" replace /> : <LoginPage />;
 };
 
 export default PrivateLogin;
