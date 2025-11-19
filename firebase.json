@@ -1,0 +1,14 @@
+{
+  "hosting": [
+    {
+      "target": "prod",
+      "public": "dist",
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
+    },
+    {
+      "target": "hml",
+      "public": "dist",
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
+    }
+  ]
+}

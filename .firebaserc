@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "stockflow-shopp"
+  },
+  "targets": {
+    "stockflow-shopp": {
+      "hosting": {
+        "prod": [
+          "stockflow-shopp"
+        ],
+        "hml": [
+          "stockflow-shopp-dev"
+        ]
+      }
+    }
+  }
+}
