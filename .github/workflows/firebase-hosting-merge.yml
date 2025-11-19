@@ -3,12 +3,12 @@ name: Deploy to Firebase Hosting (HML and PROD)
 on:
   push:
     branches:
+      - develop
       - feature/13-configuracao-firebase
-      - main
 
 jobs:
   deploy-hml:
-    if: github.ref == 'refs/heads/feature/13-configuracao-firebase'
+    if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
 
     steps:
@@ -48,7 +48,7 @@ jobs:
           channelId: hml
 
   deploy-prod:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/feature/13-configuracao-firebase'
     runs-on: ubuntu-latest
 
     steps:
