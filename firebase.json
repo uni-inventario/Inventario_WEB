@@ -1,26 +1,14 @@
 {
   "hosting": [
     {
-      "site": "stockflow-shopp",
+      "target": "prod",
       "public": "public",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
     },
     {
-      "site": "stockflow-shopp-dev",
-      "public": "public-hml",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
+      "target": "hml",
+      "public": "public",
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
     }
   ]
 }
