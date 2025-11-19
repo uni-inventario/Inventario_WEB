@@ -38,7 +38,8 @@ const New = () => {
             await obterEstoques();
             toast.success("Estoque criado com sucesso!")
         } catch (error) {
-            toast.error("Erro ao criar o estoque, tente novamente!")
+           error?.response?.data?.message &&
+                error?.response?.data?.message?.forEach(msg => toast.error(msg))
         } finally {
             setIsLoading(false);
             setLoadingBase(false);
@@ -74,6 +75,7 @@ const New = () => {
                     margin="normal"
                     required
                     fullWidth
+                    id="nome-estoque"
                     label="Nome"
                     name="nome"
                     value={formData.nome}
@@ -103,6 +105,7 @@ const New = () => {
                         type="submit"
                         fullWidth
                         variant="contained"
+                        id="button-registrar-estoque"
                         disabled={isLoading}
                         sx={{ fontSize: 12, width: 'auto' }}
                     >

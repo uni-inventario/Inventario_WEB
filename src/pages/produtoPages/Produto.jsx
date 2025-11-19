@@ -69,12 +69,13 @@ export const ListaProduto = () => {
           marginBottom: 3,
         }}
       >
-        <Typography variant="h4" component="h1" fontWeight="bold" color="primary.main">
+        <Typography variant="h4" sx={{fontSize: {xs: '1.5rem' , md: '2.2rem'}}} component="h1" fontWeight="bold" color="primary.main">
           {estoque?.nome && `Estoque - ${estoque?.nome}`}
         </Typography>
 
         <IconButton
           size="large"
+          id="button-new-produto"
           aria-label="adicionar novo estoque"
           onClick={() => setModalCreateProdutoOpen(!modalCreateProdutoOpen)}
         >
@@ -82,7 +83,7 @@ export const ListaProduto = () => {
         </IconButton>
       </Box>
 
-      <List sx={{ padding: 0, maxHeight: '65dvh', overflowY: 'auto' }}>
+      <List id="lista-produto" sx={{ padding: 0, maxHeight: '65dvh', overflowY: 'auto' }}>
         {estoque?.produtos?.map((item) => (
           <ListProduto key={item.id} item={item} />
         ))}

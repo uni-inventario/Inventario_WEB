@@ -41,7 +41,6 @@ function NavbarLogout() {
   };
 
   const drawerLinks = [
-    { title: "Home", path: "/", icon: <HomeIcon /> },
     { title: "Registrar-se", path: "/register", icon: <PersonAddIcon /> },
     { title: "Entrar", path: "/login", icon: <LoginIcon /> },
   ];
@@ -89,6 +88,8 @@ function NavbarLogout() {
               component="a"
               href={item.path}
               sx={{
+                display: "flex",
+                gap: 2,
                 "&:hover": {
                   backgroundColor: "rgba(0, 140, 255, 0.08)",
                 },
@@ -106,7 +107,7 @@ function NavbarLogout() {
 
   return (
     <AppBar position="fixed" color="inherit" elevation={1} sx={{ height: '64px' }}>
-      <Toolbar sx={{ padding: { xs: 1, sm: 2, md: 3 } }}>
+      <Toolbar sx={{ padding: { xs: 3, sm: 2, md: 3 } }}>
         <Typography
           variant="h7"
           component="div"

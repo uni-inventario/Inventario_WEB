@@ -89,6 +89,7 @@ const Delete = () => {
                     onClick={(e) => handleDelete(e)}
                     fullWidth
                     variant="contained"
+                    id="button-confirm-delete-produto"
                     disabled={isLoading}
                     sx={{ fontSize: 12, width: 'auto', bgcolor: 'red' }}
                 >

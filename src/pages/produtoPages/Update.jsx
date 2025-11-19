@@ -114,6 +114,7 @@ const Update = () => {
                     fullWidth
                     label="Nome"
                     name="nome"
+                    id="nome-editar-produto"
                     value={formData.nome}
                     onChange={handleChange}
                 />
@@ -125,6 +126,7 @@ const Update = () => {
                     multiline
                     label="Descrição"
                     name="descricao"
+                    id="descricao-editar-produto"
                     value={formData.descricao}
                     onChange={handleChange}
                     maxRows={4}
@@ -137,6 +139,7 @@ const Update = () => {
                     label="Preço"
                     name="preco"
                     type="number"
+                    id="preco-editar-produto"
                     value={formData.preco}
                     onChange={handleChange}
                 />
@@ -148,6 +151,7 @@ const Update = () => {
                     label="Quantidade"
                     name="quantidade"
                     type="number"
+                    id="quantidade-editar-produto"
                     value={formData.quantidade}
                     onChange={handleChange}
                 />
@@ -175,6 +179,7 @@ const Update = () => {
                         fullWidth
                         variant="contained"
                         disabled={isLoading}
+                        id="button-editar-produto"
                         sx={{ width: "auto" }}
                     >
                         {isLoading ? "Atualizando..." : "Salvar"}

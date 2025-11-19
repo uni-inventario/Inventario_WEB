@@ -34,8 +34,9 @@ const LoginPage = () => {
 
       toast.success("Login realizado com sucesso!");
       localStorage.setItem("access_token", JSON.stringify(response.data));
-      navigate("s");
+      navigate("/estoques");
     } catch (err) {
+      console.error(err)
       toast.error(err?.response?.data);
     } finally {
       setIsLoading(false);
@@ -115,6 +116,7 @@ const LoginPage = () => {
 
             <Button
               type="submit"
+              id="button-login"
               fullWidth
               variant="contained"
               disabled={isLoading}

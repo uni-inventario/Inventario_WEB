@@ -16,7 +16,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import {useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { logout } from "../services/authService";
 import Logo from "/logo2.png";
@@ -28,7 +28,7 @@ function Navbar() {
     const {
         setLoadingSupremo,
         setModalUpdateUsuarioOpen,
-        anchorEl, 
+        anchorEl,
         setAnchorEl
     } = useMain();
 
@@ -70,11 +70,6 @@ function Navbar() {
         }
     };
 
-    const drawerLinks = [
-        { title: "Home", path: "/", icon: <HomeIcon /> },
-        { title: "Configurações", path: "/settings", icon: <SettingsIcon /> },
-    ]
-
     const drawer = (
         <Box
             sx={{
@@ -110,26 +105,28 @@ function Navbar() {
                 </IconButton>
             </Box>
             <List sx={{ mt: 1 }}>
-                {drawerLinks.map((item) => (
-                    <ListItem key={item.title} disablePadding>
-                        <ListItemButton
-                            component="a"
-                            href={item.path}
-                            sx={{
-                                "&:hover": {
-                                    backgroundColor: "rgba(0, 140, 255, 0.08)",
-                                },
-                            }}
-                        >
-                            {item.icon}
-                            <ListItemText primary={item.title} sx={{ fontWeight: 600 }} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
+                <ListItem disablePadding>
+                    <ListItemButton
+                        component="a"
+                        onClick={handlePerfil}
+                        sx={{
+                            display: "flex",
+                            gap: 2,
+                            "&:hover": {
+                                backgroundColor: "rgba(0, 140, 255, 0.08)",
+                            },
+                        }}
+                    >
+                        <AccountCircle/>
+                        <ListItemText primary="Perfil" sx={{ fontWeight: 600 }} />
+                    </ListItemButton>
+                </ListItem>
                 <ListItem disablePadding>
                     <ListItemButton
                         onClick={handleLogout}
                         sx={{
+                            display: "flex",
+                            gap: 2,
                             color: "error.main",
                             "&:hover": { backgroundColor: "rgba(255, 0, 0, 0.08)" },
                         }}
@@ -144,7 +141,7 @@ function Navbar() {
 
     return (
         <AppBar position="fixed" color="inherit" elevation={1} sx={{ height: '64px' }}>
-            <Toolbar sx={{ padding: { xs: 1, sm: 2, md: 3 } }}>
+            <Toolbar sx={{ padding: { xs: 3, sm: 2, md: 3 } }}>
                 <Typography
                     variant="h7"
                     component="div"
@@ -171,6 +168,7 @@ function Navbar() {
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
+                            id="button-perfil"
                             onClick={handleMenu}
                             color="primary"
                         >
@@ -197,6 +195,7 @@ function Navbar() {
                         >
                             <MenuItem
                                 onClick={handlePerfil}
+                                id="button-perfil-function"
                                 sx={{
                                     borderRadius: 2,
                                     py: 1.5,

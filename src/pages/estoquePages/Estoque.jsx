@@ -48,12 +48,13 @@ export const ListaEstoque = () => {
           marginBottom: 3,
         }}
       >
-        <Typography variant="h4" component="h1" fontWeight="bold" color="primary.main">
+        <Typography id="titulo-estoque" variant="h4" sx={{fontSize: {xs: '1.5rem' , md: '2.2rem'}}} component="h1" fontWeight="bold" color="primary.main">
           Estoque
         </Typography>
 
         <IconButton
           size="large"
+          id="button-new-estoque"
           aria-label="adicionar novo estoque"
           onClick={() => setModalCreateOpen(!modalCreateOpen)}
         >
@@ -61,7 +62,7 @@ export const ListaEstoque = () => {
         </IconButton>
       </Box>
 
-      <List sx={{ padding: 0, maxHeight: '70dvh', overflowY: 'auto' }}>
+      <List id="lista-estoque" sx={{ padding: 0, maxHeight: '70dvh', overflowY: 'auto' }}>
         {estoques?.map((item) => (
           <ListEstoque key={item.id} item={item} />
         ))}
