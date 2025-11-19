@@ -2,12 +2,12 @@
   "hosting": [
     {
       "target": "prod",
-      "public": "public",
+      "public": "dist",
       "rewrites": [{ "source": "**", "destination": "/index.html" }]
     },
     {
       "target": "hml",
-      "public": "public",
+      "public": "dist",
       "rewrites": [{ "source": "**", "destination": "/index.html" }]
     }
   ]
