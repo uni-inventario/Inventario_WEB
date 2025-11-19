@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - develop
-      - feature/13-configuracao-firebase
+      - main
 
 jobs:
   deploy-hml:
@@ -48,7 +48,7 @@ jobs:
           channelId: hml
 
   deploy-prod:
-    if: github.ref == 'refs/heads/feature/13-configuracao-firebase'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
