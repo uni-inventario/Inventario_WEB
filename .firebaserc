@@ -4,29 +4,14 @@
   },
   "targets": {
     "stockflow-shopp": {
-      "hosting": [
-        {
-          "target": "prod",
-          "public": "public",
-          "rewrites": [
-            {
-              "source": "**",
-              "destination": "/index.html"
-            }
-          ]
-        },
-        {
-          "target": "hml",
-          "public": "public",
-          "rewrites": [
-            {
-              "source": "**",
-              "destination": "/index.html"
-            }
-          ]
-        }
-      ]
+      "hosting": {
+        "prod": [
+          "stockflow-shopp"
+        ],
+        "hml": [
+          "stockflow-shopp-dev"
+        ]
+      }
     }
-  },
-  "etags": {}
+  }
 }
