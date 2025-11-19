@@ -1,5 +1,32 @@
 {
   "projects": {
     "default": "stockflow-shopp"
-  }
+  },
+  "targets": {
+    "stockflow-shopp": {
+      "hosting": [
+        {
+          "target": "prod",
+          "public": "public",
+          "rewrites": [
+            {
+              "source": "**",
+              "destination": "/index.html"
+            }
+          ]
+        },
+        {
+          "target": "hml",
+          "public": "public",
+          "rewrites": [
+            {
+              "source": "**",
+              "destination": "/index.html"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "etags": {}
 }
