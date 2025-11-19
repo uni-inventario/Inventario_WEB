@@ -2,6 +2,7 @@ import { Box, IconButton, ListItem, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { useMain } from "../../hooks/main";
+import { formatMoney } from "../../utils/formatMoney";
 
 const textEllipsis = {
   width: "100%",
@@ -53,9 +54,14 @@ const ListProduto = ({ item }) => {
           {item?.descricao}
         </Typography>
 
-        <Typography variant="body2" color="text.secondary" sx={textEllipsis} title={`R$ ${item?.preco}`}>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={textEllipsis}
+          title={formatMoney(item?.preco)}
+        >
           <span style={{ fontWeight: 800, marginRight: 8 }}>Preço:</span>
-          R$ {item?.preco}
+          {formatMoney(item?.preco)}
         </Typography>
 
         <Typography variant="body2" color="text.secondary" sx={textEllipsis} title={String(item?.quantidade)}>
