@@ -3,7 +3,7 @@ name: Deploy to Firebase Hosting on merge
 on:
   push:
     branches:
-      - feature/13-configuracao-firebase
+      - main
 
 jobs:
   build_and_deploy:
@@ -14,34 +14,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # --- Variáveis de ambiente ---
       - name: Create .env.production
         run: |
-          echo "VITE_API_URL=${{ secrets.VITE_API_URL_HML }}" > .env.production
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL_PRD }}" > .env.production
 
-      # --- Instalar dependências e build ---
       - name: Install and Build
         run: |
           npm ci
           npm run build
 
-      # --- Iniciar o front para o Cypress ---
       - name: Start Frontend
         run: |
           npm run preview -- --port 5550 &
           sleep 5
 
-      # --- Instalar Cypress ---
       - name: Install Cypress
         run: npm install cypress start-server-and-test --save-dev
 
-      # --- Rodar testes Cypress ---
       - name: Run Cypress Tests
         env:
           CYPRESS_baseUrl: "http://localhost:5550"
         run: npm run test:e2e
 
-      # --- Deploy Firebase Hosting ---
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:

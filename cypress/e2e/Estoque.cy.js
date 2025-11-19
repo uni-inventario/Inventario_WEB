@@ -24,7 +24,7 @@ describe("Teste da funcionalidades do estoque", () => {
 
     cy.get("#button-confirm-delete-estoque").click();
 
-    cy.contains("Teste de falha").should("exist");
+    cy.contains("Estoque excluído com sucesso!").should("exist");
   });
 
   it("deve falhar ao criar um estoque com informação inválida", () => {
