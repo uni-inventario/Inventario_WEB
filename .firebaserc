@@ -6,7 +6,7 @@
     "stockflow-shopp": {
       "hosting": {
         "prod": [
-          "stockflow-shopp"
+          "stockflow-shopp-prod"
         ],
         "hml": [
           "stockflow-shopp-dev"
