@@ -63,7 +63,8 @@ const Usuario = () => {
             toast.success("Usuário atualizado com sucesso!");
             setModalUpdateUsuarioOpen(false);
         } catch (error) {
-            toast.error("Erro ao atualizar o usuário, tente novamente!");
+            error?.response?.data?.message &&
+                error?.response?.data?.message?.forEach(msg => toast.error(msg))
         } finally {
             setIsLoading(false);
             setLoadingBase(false);
@@ -87,6 +88,7 @@ const Usuario = () => {
                     fontWeight="bold"
                     color="primary.main"
                     sx={{ textAlign: "center", mb: 2 }}
+                    id="titulo-perfil"
                 >
                     Perfil Usuário
                 </Typography>
@@ -96,6 +98,7 @@ const Usuario = () => {
                     required
                     fullWidth
                     label="Nome"
+                    id="nome-perfil"
                     name="nome"
                     value={formData.nome}
                     onChange={handleChange}
@@ -134,6 +137,7 @@ const Usuario = () => {
                         type="submit"
                         fullWidth
                         variant="contained"
+                        id="button-editar"
                         disabled={isLoading}
                         sx={{ width: "auto" }}
                     >

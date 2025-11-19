@@ -91,6 +91,7 @@ const New = () => {
                     fullWidth
                     label="Nome"
                     name="nome"
+                    id="nome-new-produto"
                     value={formData.nome}
                     onChange={handleChange}
                 />
@@ -101,6 +102,7 @@ const New = () => {
                     multiline
                     label="Descrição"
                     name="descricao"
+                    id="descricao-new-produto"
                     value={formData.descricao}
                     onChange={handleChange}
                     maxRows={4}
@@ -113,6 +115,7 @@ const New = () => {
                     label="Preço"
                     name="preco"
                     type="number"
+                    id="preco-new-produto"
                     value={formData.preco}
                     onChange={handleChange}
                 />
@@ -124,6 +127,7 @@ const New = () => {
                     label="Quantidade"
                     name="quantidade"
                     type="number"
+                    id="quantidade-new-produto"
                     value={formData.quantidade}
                     onChange={handleChange}
                 />
@@ -151,6 +155,7 @@ const New = () => {
                         type="submit"
                         fullWidth
                         variant="contained"
+                        id="button-registrar-produto"
                         disabled={isLoading}
                         sx={{ fontSize: 12, width: 'auto' }}
                     >

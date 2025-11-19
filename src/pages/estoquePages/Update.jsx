@@ -64,7 +64,8 @@ const Update = () => {
             await obterEstoques();
             toast.success("Estoque atualizado com sucesso!");
         } catch (error) {
-            toast.error("Erro ao atualizar o estoque, tente novamente!");
+            error?.response?.data?.message &&
+                error?.response?.data?.message?.forEach(msg => toast.error(msg))
         } finally {
             setIsLoading(false);
             setLoadingBase(false);
@@ -96,6 +97,7 @@ const Update = () => {
                     margin="normal"
                     required
                     fullWidth
+                    id="nome-editar-estoque"
                     label="Nome"
                     name="nome"
                     value={formData.nome}
@@ -124,6 +126,7 @@ const Update = () => {
                         type="submit"
                         fullWidth
                         variant="contained"
+                        id="button-editar-estoque"
                         disabled={isLoading}
                         sx={{ width: "auto" }}
                     >

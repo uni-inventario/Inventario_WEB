@@ -72,7 +72,7 @@ const ListEstoque = ({ item }) => {
           <EditIcon fontSize="small" />
         </IconButton>
 
-        <IconButton size="small" aria-label="excluir" onClick={() => { 
+        <IconButton id={`button-delete-estoque-${item?.id}`} size="small" aria-label="excluir" onClick={() => { 
           setEstoqueDeleteId(item?.id);
           setModalDeleteOpen(true);
         }}>
